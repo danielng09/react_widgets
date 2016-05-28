@@ -20342,11 +20342,14 @@
 	    getInitialState: function () {
 	        return { selectedTabIndex: 0 };
 	    },
+	    handleTabSwitch: function (index) {
+	        this.setState({ selectedTabIndex: index });
+	    },
 	    displayTabTitle: function (tab, index) {
-	        var tabStyle = index === 0 ? { fontWeight: "bold" } : {};
+	        var tabStyle = index === this.state.selectedTabIndex ? { fontWeight: "bold" } : {};
 	        return React.createElement(
 	            "li",
-	            { style: tabStyle },
+	            { style: tabStyle, key: index, onClick: this.handleTabSwitch.bind(this, index) },
 	            tab.title
 	        );
 	    },

@@ -45,8 +45,8 @@
       <file leaf-file-name="tabs.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/tabs.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+            <state relative-caret-position="105">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -294,12 +294,12 @@
       <option name="presentableId" value="Default" />
       <updated>1464457149025</updated>
       <workItem from="1464457151094" duration="290000" />
-      <workItem from="1464457628667" duration="3082000" />
+      <workItem from="1464457628667" duration="3561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3372000" />
+    <option name="totallyTimeSpent" value="3851000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -385,7 +385,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#220#228#0" expanded="false" />
+            <element signature="e#430#438#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -424,8 +424,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/tabs.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+        <state relative-caret-position="105">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding />
         </state>
       </provider>
