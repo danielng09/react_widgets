@@ -20337,21 +20337,22 @@
 	var React = __webpack_require__(1);
 	
 	module.exports = React.createClass({
-	    displayName: 'exports',
+	    displayName: "exports",
 	
 	    getInitialState: function () {
 	        return { selectedTabIndex: 0 };
 	    },
-	    displayTabTitle: function (tab) {
+	    displayTabTitle: function (tab, index) {
+	        var tabStyle = index === 0 ? { fontWeight: "bold" } : {};
 	        return React.createElement(
-	            'li',
-	            null,
+	            "li",
+	            { style: tabStyle },
 	            tab.title
 	        );
 	    },
 	    render: function () {
 	        return React.createElement(
-	            'ul',
+	            "ul",
 	            null,
 	            this.props.tabItems.map(this.displayTabTitle)
 	        );
