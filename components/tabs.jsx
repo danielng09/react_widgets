@@ -1,5 +1,7 @@
 var React = require('react');
 
+var WeatherClock = require("./weatherClock.jsx");
+
 module.exports = React.createClass({
     getInitialState: function(){
         return { selectedTabIndex: 0 };
@@ -19,10 +21,11 @@ module.exports = React.createClass({
 
         return (
             <div id="tabs">
-               <ul>
-                   { tabTitles }
-               </ul>
-               <p>{ selectedContent }</p>
+                <ul>
+                    { tabTitles }
+                </ul>
+                <p>{ selectedContent }</p>
+                <WeatherClock />
             </div>
         )
     }

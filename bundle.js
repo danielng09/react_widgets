@@ -47,14 +47,14 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(38);
 	
-	var TabsComponent = __webpack_require__(168);
+	var Tabs = __webpack_require__(168);
 	
 	var MyComponent = React.createClass({
 	  displayName: 'MyComponent',
 	
 	  render: function () {
 	    var tabItems = [{ title: "First Tab", content: "This is my first tab" }, { title: "Second Tab", content: "This is my second tab" }];
-	    return React.createElement(TabsComponent, { tabItems: tabItems });
+	    return React.createElement(Tabs, { tabItems: tabItems });
 	  }
 	});
 	
@@ -20336,6 +20336,8 @@
 
 	var React = __webpack_require__(1);
 	
+	var WeatherClock = __webpack_require__(169);
+	
 	module.exports = React.createClass({
 	    displayName: "exports",
 	
@@ -20369,7 +20371,51 @@
 	                "p",
 	                null,
 	                selectedContent
-	            )
+	            ),
+	            React.createElement(WeatherClock, null)
+	        );
+	    }
+	});
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	module.exports = React.createClass({
+	    displayName: "exports",
+	
+	    getInitialState: function () {
+	        return { selectedTabIndex: 0, currentTemperature: 0 };
+	    },
+	    componentWillMount: function () {
+	        navigator.geolocation.getCurrentPosition(function (position) {
+	            this.getCurrentLocationWeather(position.coords.longitude, position.coords.latitude);
+	        }.bind(this));
+	    },
+	    getCurrentLocationWeather: function (longitude, latitude) {
+	        var xhttp = new XMLHttpRequest();
+	        xhttp.onreadystatechange = function () {
+	            if (xhttp.readyState === 4) {
+	                var weatherResponse = JSON.parse(xhttp.response);
+	                var currentTemperature = weatherResponse.main.temp;
+	                this.setState({ currentTemperature: currentTemperature });
+	            }
+	        }.bind(this);
+	
+	        var url = "http://api.openweathermap.org/data/2.5/weather?APPID=645c5d39c7603f17e23fcaffcea1a3c1&units=imperial" + "&lat=" + latitude + "&lon=" + longitude;
+	        xhttp.open("GET", url, true);
+	
+	        xhttp.send();
+	    },
+	    render: function () {
+	        return React.createElement(
+	            "h1",
+	            null,
+	            "It is currently ",
+	            this.state.currentTemperature,
+	            " in your location!"
 	        );
 	    }
 	});
