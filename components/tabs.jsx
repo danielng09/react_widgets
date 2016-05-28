@@ -14,10 +14,16 @@ module.exports = React.createClass({
         )
     },
     render: function() {
+        var selectedContent = this.props.tabItems[this.state.selectedTabIndex].content;
+        var tabTitles = this.props.tabItems.map(this.displayTabTitle);
+
         return (
-           <ul>
-               {this.props.tabItems.map(this.displayTabTitle)}
-           </ul>
+            <div id="tabs">
+               <ul>
+                   { tabTitles }
+               </ul>
+               <p>{ selectedContent }</p>
+            </div>
         )
     }
 });
