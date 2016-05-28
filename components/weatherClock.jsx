@@ -1,21 +1,53 @@
 var React = require('react');
+var moment = require('moment');
 
 module.exports = React.createClass({
-    getInitialState: function(){
-        return { selectedTabIndex: 0, currentTemperature: 0 };
+
+    getInitialState: function () {
+        return {
+            selectedTabIndex: 0,
+            currentTemperature: null,
+            location: null,
+            time: null,
+            interval: 0
+        };
     },
-    componentWillMount: function() {
-        navigator.geolocation.getCurrentPosition(function(position) {
+
+    componentWillMount: function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
             this.getCurrentLocationWeather(position.coords.longitude, position.coords.latitude);
-        }.bind(this))
+        }.bind(this));
+        this.getCurrentTime()
     },
-    getCurrentLocationWeather: function(longitude, latitude) {
+
+    componentDidMount: function () {
+        var interval = window.setInterval(function() {
+            this.getCurrentTime();
+        }.bind(this), 100);
+        this.setState({interval: interval})
+    },
+
+    componentWillUnmount: function () {
+        clearInterval(this.state.interval);
+        this.setState({interval: 0})
+    },
+
+    getCurrentTime: function () {
+        var time = moment().format("h:mm a");
+        this.setState({time: time});
+    },
+
+    getCurrentLocationWeather: function (longitude, latitude) {
         var xhttp = new XMLHttpRequest;
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = function () {
             if (xhttp.readyState === 4) {
                 var weatherResponse = JSON.parse(xhttp.response);
                 var currentTemperature = weatherResponse.main.temp;
-                this.setState({ currentTemperature: currentTemperature })
+                var location = weatherResponse.name;
+                this.setState({
+                    currentTemperature: Math.round(currentTemperature),
+                    location: location
+                })
             }
         }.bind(this);
 
@@ -24,9 +56,13 @@ module.exports = React.createClass({
 
         xhttp.send();
     },
-    render: function() {
+
+    render: function () {
         return (
-            <h1>It is currently { this.state.currentTemperature} in your location!</h1>
+            <div>
+                <h1>Time is { this.state.time }</h1>
+                <h1>It is currently { this.state.currentTemperature } in { this.state.location }!</h1>
+            </div>
         )
     }
 });
